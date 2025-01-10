@@ -1,6 +1,10 @@
 /* #region Variables */
 
 :root {
+
+    /* Fonts*/
+    --font-family: "Montserrat", sans-serif;
+
     /* Colors */
     --color-blue: #4D5AE5;
     --color-blue-light: #6c8cff;
@@ -148,7 +152,7 @@ img {
     background: var(--color-blue-light);
 }
 
-.form input[type="number"] {
+.input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -156,6 +160,12 @@ img {
     /* Светло-серая граница */
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: var(--color-grey);
 }
 
 input:hover {
