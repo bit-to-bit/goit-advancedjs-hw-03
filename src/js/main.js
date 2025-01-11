@@ -30,7 +30,6 @@ const onSearchFormSubmit = event => {
 
   fetchPhotosByQuery(searchedQuery)
     .then(async data => {
-      console.dir(data.hits);
       if (data.total === 0) {
         utils.displayMessage(
           'Sorry, there are no images matching your search query. Please try again!'
@@ -40,7 +39,8 @@ const onSearchFormSubmit = event => {
         return;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 4000));
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Delay added only to demonstrate, that the loading indicator is working
 
       galleryEl.innerHTML = createGalleryCards(data.hits);
       utils.hideElement(loaderEl);
