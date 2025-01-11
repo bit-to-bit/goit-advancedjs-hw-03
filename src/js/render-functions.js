@@ -1,4 +1,4 @@
-export const createGalleryCard = imgArr => {
+export const createGalleryCards = imgArr => {
   return imgArr.reduce((acc, el) => {
     return (
       acc +
@@ -9,10 +9,10 @@ export const createGalleryCard = imgArr => {
            data-source="${el.largeImageURL}"
            alt="${el.tags}"/>
       <div class="details">
-                <div class="likes">Likes<span>1813</span></div>
-                <div class="views">Views<span>900290</span></div>
-                <div class="comments">Comments<span>229</span></div>
-                <div class="downloads">Downloads<span>610937</span></div>
+                <div class="likes">Likes<span>${el.likes}</span></div>
+                <div class="views">Views<span>${el.views}</span></div>
+                <div class="comments">Comments<span>${el.comments}</span></div>
+                <div class="downloads">Downloads<span>${el.downloads}</span></div>
       </div>
            </a>
 

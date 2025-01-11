@@ -1,40 +1,54 @@
 'use strict';
 
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-import { iziToastSettings } from './configuration.js';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+import configuration from './configuration.js';
+import utils from './utils.js';
 import { fetchPhotosByQuery } from './pixabay-api.js';
-import { createGalleryCard } from './render-functions.js';
+import { createGalleryCards } from './render-functions.js';
 
-iziToast.settings(iziToastSettings);
-
-const searchForm = document.querySelector('.search-form');
+const searchFormEl = document.querySelector('.search-form');
+const loaderEl = document.querySelector('.loader');
 const galleryEl = document.querySelector('.gallery');
+const gallery = new SimpleLightbox(
+  '.gallery a',
+  configuration.SIMPLE_LIGHTBOX_SETTINGS
+);
 
 const onSearchFormSubmit = event => {
   event.preventDefault();
+  galleryEl.innerHTML = '';
 
   const searchedQuery = event.currentTarget.elements.search_query.value.trim();
 
+  if (!searchedQuery) {
+    utils.displayMessage('Please, enter a search phrase!');
+    return;
+  }
+
+  utils.showElement(loaderEl);
+
   fetchPhotosByQuery(searchedQuery)
-    .then(data => {
+    .then(async data => {
       console.dir(data.hits);
-      if (data.hits.total === 0) {
-        iziToast.error({
-          message:
-            'Sorry, there are no images matching your search query. Please try again!',
-        });
+      if (data.total === 0) {
+        utils.displayMessage(
+          'Sorry, there are no images matching your search query. Please try again!'
+        );
 
-        galleryEl.innerHTML = '';
-
+        utils.hideElement(loaderEl);
         return;
       }
 
-      galleryEl.innerHTML = createGalleryCard(data.hits);
+      await new Promise(resolve => setTimeout(resolve, 4000));
+
+      galleryEl.innerHTML = createGalleryCards(data.hits);
+      utils.hideElement(loaderEl);
+      gallery.refresh();
     })
     .catch(err => {
       console.log(err);
     });
 };
 
-searchForm.addEventListener('submit', onSearchFormSubmit);
+searchFormEl.addEventListener('submit', onSearchFormSubmit);

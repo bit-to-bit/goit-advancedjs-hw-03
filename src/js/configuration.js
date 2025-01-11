@@ -11,7 +11,7 @@ export const COLOR_OK = ' #59A10D';
 export const ICO_ERROR = icoError;
 export const ICO_OK = icoOk;
 
-export const iziToastSettings = {
+export const IZI_TOAST_SETTINGS = {
   timeout: 4000,
   backgroundColor: COLOR_ERROR,
   messageSize: '16',
@@ -24,13 +24,14 @@ export const iziToastSettings = {
   position: 'topRight',
 };
 
-export const iziToastSettingsSnackbar = {
-  timeout: 3000,
-  messageSize: '16',
-  messageColor: 'white',
-  messageLineHeight: '64',
-  resetOnHover: true,
-  transitionIn: 'flipInX',
-  transitionOut: 'flipOutX',
-  position: 'topRight',
+/* SimpleLightbox */
+
+export const SIMPLE_LIGHTBOX_SETTINGS = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
+
+export default {
+  IZI_TOAST_SETTINGS,
+  SIMPLE_LIGHTBOX_SETTINGS,
 };

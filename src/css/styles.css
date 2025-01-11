@@ -13,5 +13,6 @@
 /* Sections style */
 @import url('./header.css');
 @import url('./search.css');
+@import url('./loader.css');
 @import url('./gallery.css');
 @import url('./footer.css');
