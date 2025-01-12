@@ -2,10 +2,10 @@
 
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import configuration from './configuration.js';
-import utils from './utils.js';
-import { fetchPhotosByQuery } from './pixabay-api.js';
-import { createGalleryCards } from './render-functions.js';
+import configuration from './js/configuration.js';
+import utils from './js/utils.js';
+import { fetchPhotosByQuery } from './js/pixabay-api.js';
+import { createGalleryCards } from './js/render-functions.js';
 
 const searchFormEl = document.querySelector('.search-form');
 const loaderEl = document.querySelector('.loader');
